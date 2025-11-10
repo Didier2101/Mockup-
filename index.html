@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Asesoría</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Panel de navegación -->
+        <div class="nav-panel" id="navPanel">
+            <div class="nav-header">
+                <h2><i class="fas fa-project-diagram"></i> Navegación</h2>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div class="nav-items">
+                <div class="nav-item active" data-view="vista1">
+                    <i class="fas fa-home"></i> Inicio
+                </div>
+                <div class="nav-item" data-view="vista2">
+                    <i class="fas fa-user-plus"></i> Registro
+                </div>
+                <div class="nav-item" data-view="vista3">
+                    <i class="fas fa-question-circle"></i> Solicitud
+                </div>
+                <div class="nav-item" data-view="vista4">
+                    <i class="fas fa-tasks"></i> Solicitud con Tópico
+                </div>
+                <div class="nav-item" data-view="vista5">
+                    <i class="fas fa-credit-card"></i> Pago
+                </div>
+                <div class="nav-item" data-view="vista6">
+                    <i class="fas fa-reply"></i> Respuestas
+                </div>
+                <div class="nav-item" data-view="vista7">
+                    <i class="fas fa-clipboard-list"></i> Pendientes
+                </div>
+            </div>
+        </div>
+
+        <!-- Área de contenido -->
+        <div class="content-area">
+            <!-- Vista 1: Pantalla de inicio -->
+            <div id="vista1" class="view active">
+                <div class="view-header">
+                    <h1 class="view-title">Plataforma de Asesoría</h1>
+                    <div class="user-badge">
+                        <i class="fas fa-user-circle"></i> Invitado
+                    </div>
+                </div>
+
+                <div class="card">
+                    <p class="view-subtitle">Conectamos asesorados con expertos para resolver tus dudas de manera rápida
+                        y eficiente.</p>
+
+                    <div class="user-type">
+                        <div class="user-option" onclick="selectUserType('asesorado')">
+                            <i class="fas fa-user"></i>
+                            <h3>Asesorado</h3>
+                            <p>Busco ayuda de un experto</p>
+                        </div>
+                        <div class="user-option" onclick="selectUserType('experto')">
+                            <i class="fas fa-user-graduate"></i>
+                            <h3>Experto</h3>
+                            <p>Ofrezco mis conocimientos</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-success" onclick="showView('vista2')">
+                            <i class="fas fa-user-plus"></i> Crear Cuenta
+                        </button>
+                        <button class="btn">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                        </button>
+                    </div>
+
+                    <div class="terms">
+                        <p><strong>Términos y condiciones:</strong> Al utilizar esta plataforma, aceptas nuestros
+                            términos de servicio y política de privacidad.</p>
+                        <p><strong>Política de tratamiento de datos:</strong> Tus datos están protegidos según la ley de
+                            protección de datos personales.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista 2: Inscripción Asesorado/Experto -->
+            <div id="vista2" class="view">
+                <div class="view-header">
+                    <h1 class="view-title">Registro de Usuario</h1>
+                    <div class="step-indicator">
+                        <div class="step active">1</div>
+                        <div class="step">2</div>
+                        <div class="step">3</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 33%"></div>
+                </div>
+
+                <div class="card">
+                    <p class="view-subtitle">Completa tus datos para registrarte en la plataforma.</p>
+
+                    <div class="form-group">
+                        <label for="userType">¿Qué tipo de usuario eres?</label>
+                        <select id="userType">
+                            <option value="asesorado">Asesorado</option>
+                            <option value="experto">Experto</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" placeholder="Ingresa tu nombre completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" placeholder="ejemplo@correo.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clave">Contraseña</label>
+                        <input type="password" id="clave" placeholder="Crea una contraseña segura">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipoEmpresa">Tipo de empresa</label>
+                        <input type="text" id="tipoEmpresa" placeholder="Ej: Tecnología, Salud, Educación">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clave2">Confirmar contraseña</label>
+                        <input type="password" id="clave2" placeholder="Repite tu contraseña">
+                    </div>
+
+                    <div class="navigation">
+                        <button class="btn btn-success" onclick="showView('vista1')">
+                            <i class="fas fa-check"></i> Completar Registro
+                        </button>
+                        <button class="btn btn-secondary" onclick="showView('vista1')">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista 3: Solicitud -->
+            <div id="vista3" class="view">
+                <div class="view-header">
+                    <h1 class="view-title">Nueva Solicitud</h1>
+                </div>
+
+                <div class="card">
+                    <p class="view-subtitle">Describe tu consulta de manera detallada para que nuestros expertos puedan
+                        ayudarte.</p>
+
+                    <div class="form-group">
+                        <label for="categoria">Categoría de la consulta</label>
+                        <select id="categoria">
+                            <option value="">Selecciona una categoría</option>
+                            <option value="tecnologia">Tecnología</option>
+                            <option value="negocios">Negocios</option>
+                            <option value="legal">Asesoría Legal</option>
+                            <option value="salud">Salud</option>
+                            <option value="educacion">Educación</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pregunta">Describe tu pregunta o problema</label>
+                        <textarea id="pregunta" placeholder="Explica detalladamente tu consulta..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="urgencia">Nivel de urgencia</label>
+                        <select id="urgencia">
+                            <option value="baja">Baja (Respuesta en 48h)</option>
+                            <option value="media">Media (Respuesta en 24h)</option>
+                            <option value="alta">Alta (Respuesta en 12h)</option>
+                        </select>
+                    </div>
+
+                    <div class="navigation">
+                        <button class="btn btn-success" onclick="showView('vista4')">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitud
+                        </button>
+                        <button class="btn btn-secondary" onclick="showView('vista1')">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista 4: Solicitud con tópico -->
+            <div id="vista4" class="view">
+                <div class="view-header">
+                    <h1 class="view-title">Especificar Tópico</h1>
+                </div>
+
+                <div class="card">
+                    <p class="view-subtitle">Selecciona un experto y especifica el tópico de tu consulta.</p>
+
+                    <div class="form-group">
+                        <label for="experto">Seleccionar Experto</label>
+                        <div class="expert-info">
+                            <div class="expert-avatar">JS</div>
+                            <div class="expert-details">
+                                <h4>Juan Sánchez</h4>
+                                <div class="expert-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(4.5)</span>
+                                </div>
+                                <p>Especialista en Tecnología y Negocios</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topico">Tópico de la consulta</label>
+                        <input type="text" id="topico"
+                            placeholder="Ej: Implementación de CRM, Estrategia de marketing digital">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pregunta2">Detalles adicionales</label>
+                        <textarea id="pregunta2" placeholder="Proporciona más detalles sobre tu consulta..."></textarea>
+                    </div>
+
+                    <div class="navigation">
+                        <button class="btn btn-success" onclick="showView('vista5')">
+                            <i class="fas fa-arrow-right"></i> Continuar al Pago
+                        </button>
+                        <button class="btn btn-secondary" onclick="showView('vista3')">
+                            <i class="fas fa-arrow-left"></i> Volver
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista 5: Página de pago -->
+            <div id="vista5" class="view">
+                <div class="view-header">
+                    <h1 class="view-title">Proceso de Pago</h1>
+                </div>
+
+                <div class="card">
+                    <p class="view-subtitle">Selecciona tu método de pago preferido para completar la transacción.</p>
+
+                    <div class="payment-methods">
+                        <div class="payment-method selected">
+                            <i class="fas fa-credit-card"></i>
+                            <h4>Tarjeta de Crédito</h4>
+                            <p>Pago seguro con tarjeta</p>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-university"></i>
+                            <h4>PSE</h4>
+                            <p>Pago en línea</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tarjeta">Número de tarjeta</label>
+                        <input type="text" id="tarjeta" placeholder="1234 5678 9012 3456">
+                    </div>
+
+                    <div class="form-row" style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="fecha">Fecha de vencimiento</label>
+                            <input type="text" id="fecha" placeholder="MM/AA">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombreTarjeta">Nombre en la tarjeta</label>
+                        <input type="text" id="nombreTarjeta" placeholder="Como aparece en la tarjeta">
+                    </div>
+
+                    <div class="navigation">
+                        <button class="btn btn-success" onclick="showView('vista6')">
+                            <i class="fas fa-lock"></i> Pagar $50.000
+                        </button>
+                        <button class="btn btn-secondary" onclick="showView('vista4')">
+                            <i class="fas fa-arrow-left"></i> Volver
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista 6: Respuestas -->
+            <div id="vista6" class="view">
+                <div class="view-header">
+                    <h1 class="view-title">Respuestas Recibidas</h1>
+                    <div class="notification-badge">
+                        <i class="fas fa-bell"></i> 3 nuevas
+                    </div>
+                </div>
+
+                <div class="card">
+                    <p class="view-subtitle">Estas son las respuestas que has recibido de nuestros expertos.</p>
+
+                    <div class="response-item">
+                        <div class="response-topic">Tópico: Implementación de CRM</div>
+                        <div class="response-content">
+                            <p><strong>Respuesta:</strong> Sed ut perspiciatis, unde inventore veritatis et quasi
+                                architecto beatae vitae dicta sunt, explicabo.</p>
+                            <p><strong>Experto:</strong> María González - Especialista en Sistemas</p>
+                            <p><strong>Fecha:</strong> 15 de Mayo, 2023</p>
+                        </div>
+                    </div>
+
+                    <div class="response-item">
+                        <div class="response-topic">Tópico: Estrategia de Marketing Digital</div>
+                        <div class="response-content">
+                            <p><strong>Respuesta:</strong> At vero eos et accusamus et iusto odio dignissimos ducimus
+                                qui blanditiis praesentium voluptatum.</p>
+                            <p><strong>Experto:</strong> Carlos López - Consultor de Marketing</p>
+                            <p><strong>Fecha:</strong> 12 de Mayo, 2023</p>
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <button class="btn btn-secondary" onclick="showView('vista1')">
+                            <i class="fas fa-home"></i> Volver al Inicio
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista 7: Pantalla asuntos pendientes Experto -->
+            <div id="vista7" class="view">
+                <div class="view-header">
+                    <h1 class="view-title">Perfil de Experto</h1>
+                    <div class="user-badge">
+                        <i class="fas fa-user-tie"></i> Modo Experto
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-clipboard-list"></i> Tareas Pendientes</h3>
+                    <p class="view-subtitle">Gestiona las consultas asignadas a tu perfil de experto.</p>
+
+                    <div class="todo-section">
+                        <div class="todo-item">
+                            <h4>Implementación de sistema de gestión</h4>
+                            <p><strong>Consulta:</strong> Necesito orientación para implementar un sistema de gestión de
+                                calidad.</p>
+                            <p><strong>Asesorado:</strong> Ana Rodríguez</p>
+                            <p><strong>Fecha:</strong> Hace 2 días</p>
+                            <button class="btn">
+                                <i class="fas fa-reply"></i> Responder
+                            </button>
+                        </div>
+
+                        <div class="todo-item">
+                            <h4>Estrategia de expansión comercial</h4>
+                            <p><strong>Consulta:</strong> Busco asesoría para expandir mi negocio a nuevos mercados.</p>
+                            <p><strong>Asesorado:</strong> Luis Fernández</p>
+                            <p><strong>Fecha:</strong> Hace 1 día</p>
+                            <button class="btn">
+                                <i class="fas fa-reply"></i> Responder
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <button class="btn btn-secondary" onclick="showView('vista1')">
+                            <i class="fas fa-sign-out-alt"></i> Salir del Modo Experto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
