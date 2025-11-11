@@ -178,9 +178,78 @@
 
                         <div class="form-group">
                             <label for="temasExpertise">Temas de expertise</label>
-                            <textarea id="temasExpertise" placeholder="Describe tus áreas de expertise"></textarea>
+                            <button type="button" class="btn btn-outline" onclick="toggleTemasExpertise()"
+                                id="btnTemasExpertise">
+                                <i class="fas fa-plus"></i> Seleccionar Temas de Expertise
+                            </button>
+                            <div class="checkbox-grid" id="gridTemasExpertise" style="display: none; margin-top: 15px;">
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_estrategia" name="temasExpertise"
+                                        value="estrategia">
+                                    <label for="tema_estrategia">Estrategia</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_ventas" name="temasExpertise" value="ventas">
+                                    <label for="tema_ventas">Ventas y Marketing</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_producto" name="temasExpertise" value="producto">
+                                    <label for="tema_producto">Producto/Servicio</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_precio" name="temasExpertise" value="precio">
+                                    <label for="tema_precio">Precio</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_legal" name="temasExpertise" value="legal">
+                                    <label for="tema_legal">Legal</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_rh" name="temasExpertise" value="rh">
+                                    <label for="tema_rh">Recursos Humanos</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_negocio" name="temasExpertise" value="negocio">
+                                    <label for="tema_negocio">Desarrollo de Negocio</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_financiero" name="temasExpertise"
+                                        value="financiero">
+                                    <label for="tema_financiero">Financiero</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_contable" name="temasExpertise" value="contable">
+                                    <label for="tema_contable">Contable</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_diseno" name="temasExpertise" value="diseno">
+                                    <label for="tema_diseno">Diseño de Producto</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_tecnologia" name="temasExpertise"
+                                        value="tecnologia">
+                                    <label for="tema_tecnologia">Tecnología</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_operaciones" name="temasExpertise"
+                                        value="operaciones">
+                                    <label for="tema_operaciones">Operaciones</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_calidad" name="temasExpertise" value="calidad">
+                                    <label for="tema_calidad">Gestión de Calidad</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tema_exportacion" name="temasExpertise"
+                                        value="exportacion">
+                                    <label for="tema_exportacion">Exportación e Internacionalización</label>
+                                </div>
+                            </div>
+                            <div id="temasSeleccionados" style="margin-top: 10px; display: none;">
+                                <small><strong>Temas seleccionados:</strong> <span
+                                        id="listaTemas">Ninguno</span></small>
+                            </div>
                         </div>
-
                         <div class="form-group">
                             <label for="aniosExperiencia">Años de experiencia</label>
                             <input type="number" id="aniosExperiencia" placeholder="Años de experiencia">

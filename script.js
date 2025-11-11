@@ -155,3 +155,62 @@ function programarRecordatorio(fechaHora) {
   // En una implementación real, aquí se conectaría con un servicio de notificaciones
   console.log(`Recordatorio programado para 15 minutos antes de ${fechaHora}`);
 }
+
+// Función para mostrar/ocultar los temas de expertise
+function toggleTemasExpertise() {
+  const grid = document.getElementById("gridTemasExpertise");
+  const btn = document.getElementById("btnTemasExpertise");
+  const temasContainer = document.getElementById("temasSeleccionados");
+
+  if (grid.classList.contains("show")) {
+    grid.classList.remove("show");
+    btn.innerHTML =
+      '<i class="fas fa-plus"></i> Seleccionar Temas de Expertise';
+    // Ocultar después de la animación
+    setTimeout(() => {
+      grid.style.display = "none";
+    }, 300);
+  } else {
+    grid.style.display = "block";
+    setTimeout(() => {
+      grid.classList.add("show");
+    }, 10);
+    btn.innerHTML = '<i class="fas fa-minus"></i> Ocultar Temas';
+  }
+
+  // Actualizar la lista de temas seleccionados
+  actualizarTemasSeleccionados();
+}
+
+// Función para actualizar la lista de temas seleccionados
+function actualizarTemasSeleccionados() {
+  const checkboxes = document.querySelectorAll(
+    'input[name="temasExpertise"]:checked'
+  );
+  const temasContainer = document.getElementById("temasSeleccionados");
+  const listaTemas = document.getElementById("listaTemas");
+
+  if (checkboxes.length > 0) {
+    const temas = Array.from(checkboxes).map((cb) => {
+      const label = document.querySelector(`label[for="${cb.id}"]`);
+      return label ? label.textContent : cb.value;
+    });
+
+    listaTemas.textContent = temas.join(", ");
+    temasContainer.style.display = "block";
+  } else {
+    listaTemas.textContent = "Ninguno";
+    temasContainer.style.display = "none";
+  }
+}
+
+// En el DOMContentLoaded, agregar event listeners a los checkboxes
+document.addEventListener("DOMContentLoaded", function () {
+  // Event listeners para los checkboxes de temas
+  const checkboxesTemas = document.querySelectorAll(
+    'input[name="temasExpertise"]'
+  );
+  checkboxesTemas.forEach((checkbox) => {
+    checkbox.addEventListener("change", actualizarTemasSeleccionados);
+  });
+});
