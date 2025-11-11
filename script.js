@@ -34,6 +34,27 @@ function selectUserType(type) {
   event.currentTarget.classList.add("selected");
 }
 
+// Función para mostrar/ocultar campos de experto
+function toggleCamposExperto() {
+  const userType = document.getElementById("userType").value;
+  const camposExperto = document.getElementById("camposExperto");
+
+  if (userType === "experto") {
+    camposExperto.style.display = "block";
+  } else {
+    camposExperto.style.display = "none";
+  }
+}
+
+// Función para seleccionar opción de precio
+function selectPriceOption(option) {
+  const options = option.parentElement.querySelectorAll(".price-option");
+  options.forEach((opt) => {
+    opt.classList.remove("selected");
+  });
+  option.classList.add("selected");
+}
+
 // Configurar eventos
 document.addEventListener("DOMContentLoaded", function () {
   // Navegación
@@ -62,6 +83,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Opciones de precio
+  const priceOptions = document.querySelectorAll(".price-option");
+  priceOptions.forEach((option) => {
+    option.addEventListener("click", function () {
+      const parent = this.parentElement;
+      parent.querySelectorAll(".price-option").forEach((opt) => {
+        opt.classList.remove("selected");
+      });
+      this.classList.add("selected");
+    });
+  });
+
+  // Toggle campos de experto
+  const userTypeSelect = document.getElementById("userType");
+  if (userTypeSelect) {
+    userTypeSelect.addEventListener("change", toggleCamposExperto);
+  }
+
   // Cerrar menú al hacer clic fuera de él (solo en móviles)
   document.addEventListener("click", function (event) {
     if (
@@ -72,4 +111,36 @@ document.addEventListener("DOMContentLoaded", function () {
       navPanel.classList.remove("active");
     }
   });
+
+  // Validación de formularios
+  const forms = document.querySelectorAll("form");
+  forms.forEach((form) => {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      // Aquí iría la validación real
+      alert("Formulario enviado correctamente");
+    });
+  });
 });
+
+// Función para validar LinkedIn (simulada)
+function validarLinkedIn(url) {
+  // En una implementación real, aquí se haría una validación real del perfil
+  return url.includes("linkedin.com/in/");
+}
+
+// Función para calcular costo basado en duración
+function calcularCosto(duracion) {
+  const precios = {
+    30: 50000,
+    60: 90000,
+    90: 120000,
+  };
+  return precios[duracion] || 0;
+}
+
+// Función para programar recordatorio
+function programarRecordatorio(fechaHora) {
+  // En una implementación real, aquí se conectaría con un servicio de notificaciones
+  console.log(`Recordatorio programado para 15 minutos antes de ${fechaHora}`);
+}

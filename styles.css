@@ -11,6 +11,7 @@
   --primary-dark: #2980b9;
   --secondary: #2c3e50;
   --accent: #2ecc71;
+  --warning: #e74c3c;
   --light: #ecf0f1;
   --dark: #2c3e50;
   --gray: #95a5a6;
@@ -251,6 +252,15 @@ textarea {
   box-shadow: 0 6px 12px rgba(46, 204, 113, 0.3);
 }
 
+.btn-warning {
+  background-color: var(--warning);
+  box-shadow: 0 4px 6px rgba(231, 76, 60, 0.2);
+}
+
+.btn-warning:hover {
+  box-shadow: 0 6px 12px rgba(231, 76, 60, 0.3);
+}
+
 .user-type {
   display: flex;
   gap: 20px;
@@ -413,29 +423,108 @@ textarea {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 .expert-avatar {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background-color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
-  margin-right: 15px;
+  margin-right: 20px;
   flex-shrink: 0;
+}
+
+.expert-details {
+  flex: 1;
 }
 
 .expert-details h4 {
   margin-bottom: 5px;
+  font-size: 20px;
 }
 
 .expert-rating {
   color: #f39c12;
+  margin-bottom: 10px;
+}
+
+.expert-pricing {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.price-option {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  flex: 1;
+}
+
+.price-option.selected {
+  border-color: var(--accent);
+  background-color: rgba(46, 204, 113, 0.1);
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.availability.offline {
+  color: var(--gray);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.checkbox-group input {
+  width: auto;
+  margin-right: 10px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.online-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.status-indicator.offline {
+  background-color: var(--gray);
 }
 
 .user-badge,
@@ -455,7 +544,6 @@ textarea {
 }
 
 /* Responsive Design */
-/* Tablets */
 @media (max-width: 992px) {
   .app-container {
     height: 92vh;
@@ -485,7 +573,6 @@ textarea {
   }
 }
 
-/* Tablets pequeñas y móviles grandes */
 @media (max-width: 768px) {
   .app-container {
     flex-direction: column;
@@ -550,9 +637,23 @@ textarea {
     width: 100%;
     margin-right: 0;
   }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .expert-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .expert-avatar {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
 }
 
-/* Móviles */
 @media (max-width: 576px) {
   body {
     padding: 10px;
@@ -584,22 +685,15 @@ textarea {
     font-size: 28px;
   }
 
-  .expert-info {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .expert-avatar {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-
   .step-indicator {
     justify-content: space-around;
   }
+
+  .expert-pricing {
+    flex-direction: column;
+  }
 }
 
-/* Móviles pequeños */
 @media (max-width: 400px) {
   .view-title {
     font-size: 20px;

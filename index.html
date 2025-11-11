@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma de Asesoría</title>
+    <title>Yo Sé Quien Sabe - Plataforma de Asesoría</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -30,7 +30,7 @@
                     <i class="fas fa-question-circle"></i> Solicitud
                 </div>
                 <div class="nav-item" data-view="vista4">
-                    <i class="fas fa-tasks"></i> Solicitud con Tópico
+                    <i class="fas fa-tasks"></i> Selección Experto
                 </div>
                 <div class="nav-item" data-view="vista5">
                     <i class="fas fa-credit-card"></i> Pago
@@ -39,7 +39,7 @@
                     <i class="fas fa-reply"></i> Respuestas
                 </div>
                 <div class="nav-item" data-view="vista7">
-                    <i class="fas fa-clipboard-list"></i> Pendientes
+                    <i class="fas fa-clipboard-list"></i> Perfil Experto
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
             <!-- Vista 1: Pantalla de inicio -->
             <div id="vista1" class="view active">
                 <div class="view-header">
-                    <h1 class="view-title">Plataforma de Asesoría</h1>
+                    <h1 class="view-title">YO SE QUIEN SABE LO QUE USTED NO SABE</h1>
                     <div class="user-badge">
                         <i class="fas fa-user-circle"></i> Invitado
                     </div>
@@ -83,7 +83,8 @@
 
                     <div class="terms">
                         <p><strong>Términos y condiciones:</strong> Al utilizar esta plataforma, aceptas nuestros
-                            términos de servicio y política de privacidad.</p>
+                            términos de servicio y política de privacidad. Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit.</p>
                         <p><strong>Política de tratamiento de datos:</strong> Tus datos están protegidos según la ley de
                             protección de datos personales.</p>
                     </div>
@@ -105,14 +106,29 @@
                 </div>
 
                 <div class="card">
-                    <p class="view-subtitle">Completa tus datos para registrarte en la plataforma.</p>
+                    <p class="view-subtitle">Completa tus datos para registrarte en la plataforma. Importante el tipo de
+                        empresa ya que este es un key de correlación.</p>
 
                     <div class="form-group">
-                        <label for="userType">¿Qué tipo de usuario eres?</label>
+                        <label for="userType">¿Qué tipo de usuario es?</label>
                         <select id="userType">
                             <option value="asesorado">Asesorado</option>
                             <option value="experto">Experto</option>
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipoIdentificacion">Tipo de identificación</label>
+                        <select id="tipoIdentificacion">
+                            <option value="">Seleccionar tipo</option>
+                            <option value="natural">Persona Natural</option>
+                            <option value="juridica">Persona Jurídica</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numeroIdentificacion">Número de identificación</label>
+                        <input type="text" id="numeroIdentificacion" placeholder="Ingresa tu número de identificación">
                     </div>
 
                     <div class="form-group">
@@ -131,13 +147,59 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="tipoEmpresa">Tipo de empresa</label>
-                        <input type="text" id="tipoEmpresa" placeholder="Ej: Tecnología, Salud, Educación">
+                        <label for="sector">Sector según DANE</label>
+                        <select id="sector">
+                            <option value="">Seleccionar sector</option>
+                            <option value="agropecuario">Agropecuario</option>
+                            <option value="industrial">Industrial</option>
+                            <option value="construccion">Construcción</option>
+                            <option value="comercio">Comercio</option>
+                            <option value="servicios">Servicios</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="clave2">Confirmar contraseña</label>
-                        <input type="password" id="clave2" placeholder="Repite tu contraseña">
+                        <label for="tamanoEmpresa">Tamaño de empresa</label>
+                        <select id="tamanoEmpresa">
+                            <option value="">Seleccionar tamaño</option>
+                            <option value="micro">Microempresa</option>
+                            <option value="pequena">Pequeña empresa</option>
+                            <option value="mediana">Mediana empresa</option>
+                            <option value="grande">Gran empresa</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos específicos para expertos -->
+                    <div id="camposExperto" style="display: none;">
+                        <div class="form-group">
+                            <label for="linkedin">Perfil de LinkedIn</label>
+                            <input type="url" id="linkedin" placeholder="https://linkedin.com/in/tu-perfil">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="temasExpertise">Temas de expertise</label>
+                            <textarea id="temasExpertise" placeholder="Describe tus áreas de expertise"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="aniosExperiencia">Años de experiencia</label>
+                            <input type="number" id="aniosExperiencia" placeholder="Años de experiencia">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disponibilidad">Disponibilidad</label>
+                            <select id="disponibilidad">
+                                <option value="">Seleccionar disponibilidad</option>
+                                <option value="agenda">Por agenda</option>
+                                <option value="linea">En línea</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="habeasData" required>
+                        <label for="habeasData">Acepto la política de Habeas Data y tratamiento de datos
+                            personales</label>
                     </div>
 
                     <div class="navigation">
@@ -162,14 +224,31 @@
                         ayudarte.</p>
 
                     <div class="form-group">
-                        <label for="categoria">Categoría de la consulta</label>
-                        <select id="categoria">
-                            <option value="">Selecciona una categoría</option>
-                            <option value="tecnologia">Tecnología</option>
-                            <option value="negocios">Negocios</option>
-                            <option value="legal">Asesoría Legal</option>
-                            <option value="salud">Salud</option>
-                            <option value="educacion">Educación</option>
+                        <label for="temaSolicitud">Selección de tema</label>
+                        <select id="temaSolicitud">
+                            <option value="">Seleccionar tema</option>
+                            <option value="estrategia">Estrategia</option>
+                            <option value="ventas">Ventas y Marketing</option>
+                            <option value="producto">Producto/Servicio</option>
+                            <option value="precio">Precio</option>
+                            <option value="legal">Legal</option>
+                            <option value="rh">Recursos Humanos</option>
+                            <option value="negocio">Desarrollo de Negocio</option>
+                            <option value="financiero">Financiero</option>
+                            <option value="contable">Contable</option>
+                            <option value="diseno">Diseño de Producto</option>
+                            <option value="empezando">Empezando</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duracion">Duración de la sesión</label>
+                        <select id="duracion">
+                            <option value="">Seleccionar duración</option>
+                            <option value="30">30 minutos</option>
+                            <option value="60">60 minutos</option>
+                            <option value="90">90 minutos</option>
                         </select>
                     </div>
 
@@ -178,18 +257,9 @@
                         <textarea id="pregunta" placeholder="Explica detalladamente tu consulta..."></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="urgencia">Nivel de urgencia</label>
-                        <select id="urgencia">
-                            <option value="baja">Baja (Respuesta en 48h)</option>
-                            <option value="media">Media (Respuesta en 24h)</option>
-                            <option value="alta">Alta (Respuesta en 12h)</option>
-                        </select>
-                    </div>
-
                     <div class="navigation">
                         <button class="btn btn-success" onclick="showView('vista4')">
-                            <i class="fas fa-paper-plane"></i> Enviar Solicitud
+                            <i class="fas fa-paper-plane"></i> Buscar Expertos
                         </button>
                         <button class="btn btn-secondary" onclick="showView('vista1')">
                             <i class="fas fa-times"></i> Cancelar
@@ -198,48 +268,87 @@
                 </div>
             </div>
 
-            <!-- Vista 4: Solicitud con tópico -->
+            <!-- Vista 4: Selección de Experto -->
             <div id="vista4" class="view">
                 <div class="view-header">
-                    <h1 class="view-title">Especificar Tópico</h1>
+                    <h1 class="view-title">Seleccionar Experto</h1>
                 </div>
 
                 <div class="card">
-                    <p class="view-subtitle">Selecciona un experto y especifica el tópico de tu consulta.</p>
+                    <p class="view-subtitle">Selecciona un experto según tu tema y necesidades.</p>
 
-                    <div class="form-group">
-                        <label for="experto">Seleccionar Experto</label>
-                        <div class="expert-info">
-                            <div class="expert-avatar">JS</div>
-                            <div class="expert-details">
-                                <h4>Juan Sánchez</h4>
-                                <div class="expert-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <span>(4.5)</span>
+                    <div class="expert-info">
+                        <div class="expert-avatar">MG</div>
+                        <div class="expert-details">
+                            <h4>María González</h4>
+                            <div class="expert-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(4.7) • Especialista en Estrategia y Marketing</span>
+                            </div>
+                            <p><i class="fab fa-linkedin"></i> Perfil verificado • 12 años de experiencia</p>
+                            <div class="expert-pricing">
+                                <div class="price-option" data-minutes="30" data-price="50000">
+                                    <strong>30 min</strong>
+                                    <div>$50.000</div>
                                 </div>
-                                <p>Especialista en Tecnología y Negocios</p>
+                                <div class="price-option selected" data-minutes="60" data-price="90000">
+                                    <strong>60 min</strong>
+                                    <div>$90.000</div>
+                                </div>
+                                <div class="price-option" data-minutes="90" data-price="120000">
+                                    <strong>90 min</strong>
+                                    <div>$120.000</div>
+                                </div>
+                            </div>
+                            <div class="availability">
+                                <i class="fas fa-circle"></i> Disponible ahora
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="topico">Tópico de la consulta</label>
-                        <input type="text" id="topico"
-                            placeholder="Ej: Implementación de CRM, Estrategia de marketing digital">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pregunta2">Detalles adicionales</label>
-                        <textarea id="pregunta2" placeholder="Proporciona más detalles sobre tu consulta..."></textarea>
+                    <div class="expert-info">
+                        <div class="expert-avatar">CL</div>
+                        <div class="expert-details">
+                            <h4>Carlos López</h4>
+                            <div class="expert-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0) • Especialista en Finanzas y Contabilidad</span>
+                            </div>
+                            <p><i class="fab fa-linkedin"></i> Perfil verificado • 15 años de experiencia</p>
+                            <div class="expert-pricing">
+                                <div class="price-option" data-minutes="30" data-price="60000">
+                                    <strong>30 min</strong>
+                                    <div>$60.000</div>
+                                </div>
+                                <div class="price-option" data-minutes="60" data-price="100000">
+                                    <strong>60 min</strong>
+                                    <div>$100.000</div>
+                                </div>
+                                <div class="price-option" data-minutes="90" data-price="140000">
+                                    <strong>90 min</strong>
+                                    <div>$140.000</div>
+                                </div>
+                            </div>
+                            <div class="availability offline">
+                                <i class="fas fa-circle"></i> Disponible en 2 horas
+                            </div>
+                        </div>
                     </div>
 
                     <div class="navigation">
                         <button class="btn btn-success" onclick="showView('vista5')">
-                            <i class="fas fa-arrow-right"></i> Continuar al Pago
+                            <i class="fas fa-check"></i> Seleccionar Experto
+                        </button>
+                        <button class="btn">
+                            <i class="fas fa-phone"></i> Llamada Inmediata
                         </button>
                         <button class="btn btn-secondary" onclick="showView('vista3')">
                             <i class="fas fa-arrow-left"></i> Volver
@@ -258,42 +367,36 @@
                     <p class="view-subtitle">Selecciona tu método de pago preferido para completar la transacción.</p>
 
                     <div class="payment-methods">
-                        <div class="payment-method selected">
-                            <i class="fas fa-credit-card"></i>
-                            <h4>Tarjeta de Crédito</h4>
-                            <p>Pago seguro con tarjeta</p>
-                        </div>
                         <div class="payment-method">
                             <i class="fas fa-university"></i>
                             <h4>PSE</h4>
                             <p>Pago en línea</p>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tarjeta">Número de tarjeta</label>
-                        <input type="text" id="tarjeta" placeholder="1234 5678 9012 3456">
-                    </div>
-
-                    <div class="form-row" style="display: flex; gap: 15px;">
-                        <div class="form-group" style="flex: 1;">
-                            <label for="fecha">Fecha de vencimiento</label>
-                            <input type="text" id="fecha" placeholder="MM/AA">
+                        <div class="payment-method selected">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Nequi</h4>
+                            <p>Billetera digital</p>
                         </div>
-                        <div class="form-group" style="flex: 1;">
-                            <label for="cvv">CVV</label>
-                            <input type="text" id="cvv" placeholder="123">
+                        <div class="payment-method">
+                            <i class="fas fa-wallet"></i>
+                            <h4>DaviPlata</h4>
+                            <p>Billetera digital</p>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="nombreTarjeta">Nombre en la tarjeta</label>
-                        <input type="text" id="nombreTarjeta" placeholder="Como aparece en la tarjeta">
+                        <label for="numeroCelular">Número de celular</label>
+                        <input type="tel" id="numeroCelular" placeholder="Ingresa tu número de celular">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailFactura">Email para factura</label>
+                        <input type="email" id="emailFactura" placeholder="correo@factura.com">
                     </div>
 
                     <div class="navigation">
                         <button class="btn btn-success" onclick="showView('vista6')">
-                            <i class="fas fa-lock"></i> Pagar $50.000
+                            <i class="fas fa-lock"></i> Pagar $90.000
                         </button>
                         <button class="btn btn-secondary" onclick="showView('vista4')">
                             <i class="fas fa-arrow-left"></i> Volver
@@ -305,36 +408,51 @@
             <!-- Vista 6: Respuestas -->
             <div id="vista6" class="view">
                 <div class="view-header">
-                    <h1 class="view-title">Respuestas Recibidas</h1>
+                    <h1 class="view-title">Sesión Programada</h1>
                     <div class="notification-badge">
-                        <i class="fas fa-bell"></i> 3 nuevas
+                        <i class="fas fa-bell"></i> Recordatorio activado
                     </div>
                 </div>
 
                 <div class="card">
-                    <p class="view-subtitle">Estas son las respuestas que has recibido de nuestros expertos.</p>
+                    <p class="view-subtitle">Tu sesión ha sido programada exitosamente. Recibirás recordatorios 15
+                        minutos antes.</p>
 
                     <div class="response-item">
-                        <div class="response-topic">Tópico: Implementación de CRM</div>
+                        <div class="response-topic">Resumen de la Sesión</div>
                         <div class="response-content">
-                            <p><strong>Respuesta:</strong> Sed ut perspiciatis, unde inventore veritatis et quasi
-                                architecto beatae vitae dicta sunt, explicabo.</p>
-                            <p><strong>Experto:</strong> María González - Especialista en Sistemas</p>
-                            <p><strong>Fecha:</strong> 15 de Mayo, 2023</p>
+                            <p><strong>Experto:</strong> María González</p>
+                            <p><strong>Tema:</strong> Estrategia de Marketing Digital</p>
+                            <p><strong>Duración:</strong> 60 minutos</p>
+                            <p><strong>Costo:</strong> $90.000</p>
+                            <p><strong>Fecha y Hora:</strong> 25 de Mayo, 2023 - 10:00 AM</p>
+                            <p><strong>Método:</strong> Videollamada</p>
                         </div>
                     </div>
 
                     <div class="response-item">
-                        <div class="response-topic">Tópico: Estrategia de Marketing Digital</div>
+                        <div class="response-topic">Resumen IA Generado</div>
                         <div class="response-content">
-                            <p><strong>Respuesta:</strong> At vero eos et accusamus et iusto odio dignissimos ducimus
-                                qui blanditiis praesentium voluptatum.</p>
-                            <p><strong>Experto:</strong> Carlos López - Consultor de Marketing</p>
-                            <p><strong>Fecha:</strong> 12 de Mayo, 2023</p>
+                            <p>Basado en tu consulta sobre estrategia de marketing, nuestro sistema ha identificado los
+                                siguientes puntos clave a discutir:</p>
+                            <ul>
+                                <li>Análisis de mercado objetivo</li>
+                                <li>Estrategias de posicionamiento</li>
+                                <li>Métricas de seguimiento</li>
+                                <li>Optimización de presupuesto</li>
+                            </ul>
+                            <p><em>Nota: Este es un concepto generado por IA. El experto proporcionará el análisis
+                                    final.</em></p>
                         </div>
                     </div>
 
                     <div class="navigation">
+                        <button class="btn btn-success">
+                            <i class="fas fa-video"></i> Unirse a Videollamada
+                        </button>
+                        <button class="btn">
+                            <i class="fas fa-comments"></i> Chat con Experto
+                        </button>
                         <button class="btn btn-secondary" onclick="showView('vista1')">
                             <i class="fas fa-home"></i> Volver al Inicio
                         </button>
@@ -342,7 +460,7 @@
                 </div>
             </div>
 
-            <!-- Vista 7: Pantalla asuntos pendientes Experto -->
+            <!-- Vista 7: Perfil de Experto -->
             <div id="vista7" class="view">
                 <div class="view-header">
                     <h1 class="view-title">Perfil de Experto</h1>
@@ -352,28 +470,74 @@
                 </div>
 
                 <div class="card">
-                    <h3><i class="fas fa-clipboard-list"></i> Tareas Pendientes</h3>
-                    <p class="view-subtitle">Gestiona las consultas asignadas a tu perfil de experto.</p>
+                    <div class="expert-info">
+                        <div class="expert-avatar">MG</div>
+                        <div class="expert-details">
+                            <h4>María González</h4>
+                            <div class="expert-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(4.7) • 12 años de experiencia</span>
+                            </div>
+                            <p><i class="fab fa-linkedin"></i> linkedin.com/in/mariagonzalez</p>
+                            <p><strong>Sector:</strong> Servicios • <strong>Tema:</strong> Estrategia, Marketing</p>
+
+                            <div class="expert-pricing">
+                                <div class="price-option">
+                                    <strong>30 min</strong>
+                                    <div>$50.000</div>
+                                </div>
+                                <div class="price-option selected">
+                                    <strong>60 min</strong>
+                                    <div>$90.000</div>
+                                </div>
+                                <div class="price-option">
+                                    <strong>90 min</strong>
+                                    <div>$120.000</div>
+                                </div>
+                            </div>
+
+                            <div class="online-status">
+                                <div class="status-indicator"></div>
+                                <span>En línea - Disponible para consultas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <button class="btn btn-success">
+                            <i class="fas fa-toggle-on"></i> Modo En Línea
+                        </button>
+                        <button class="btn">
+                            <i class="fas fa-calendar"></i> Gestionar Agenda
+                        </button>
+                    </div>
+
+                    <h3><i class="fas fa-clipboard-list"></i> Consultas Pendientes</h3>
 
                     <div class="todo-section">
                         <div class="todo-item">
-                            <h4>Implementación de sistema de gestión</h4>
-                            <p><strong>Consulta:</strong> Necesito orientación para implementar un sistema de gestión de
-                                calidad.</p>
-                            <p><strong>Asesorado:</strong> Ana Rodríguez</p>
-                            <p><strong>Fecha:</strong> Hace 2 días</p>
+                            <h4>Estrategia de expansión comercial</h4>
+                            <p><strong>Consulta:</strong> Busco asesoría para expandir mi negocio de productos orgánicos
+                                a nuevos mercados.</p>
+                            <p><strong>Asesorado:</strong> Luis Fernández • <strong>Duración:</strong> 60 min</p>
+                            <p><strong>Fecha:</strong> Hoy - 10:00 AM</p>
                             <button class="btn">
-                                <i class="fas fa-reply"></i> Responder
+                                <i class="fas fa-reply"></i> Preparar Respuesta
                             </button>
                         </div>
 
                         <div class="todo-item">
-                            <h4>Estrategia de expansión comercial</h4>
-                            <p><strong>Consulta:</strong> Busco asesoría para expandir mi negocio a nuevos mercados.</p>
-                            <p><strong>Asesorado:</strong> Luis Fernández</p>
-                            <p><strong>Fecha:</strong> Hace 1 día</p>
+                            <h4>Optimización de procesos logísticos</h4>
+                            <p><strong>Consulta:</strong> Requiero mejorar los procesos logísticos de mi empresa de
+                                distribución.</p>
+                            <p><strong>Asesorado:</strong> Homer Simpson • <strong>Duración:</strong> 90 min</p>
+                            <p><strong>Fecha:</strong> Mañana - 2:00 PM</p>
                             <button class="btn">
-                                <i class="fas fa-reply"></i> Responder
+                                <i class="fas fa-reply"></i> Preparar Respuesta
                             </button>
                         </div>
                     </div>
