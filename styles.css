@@ -22,25 +22,49 @@
   --transition: all 0.3s ease;
 }
 
+/* Fondo diferente para móvil y desktop */
 body {
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  color: var(--text);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
+  color: var(--text);
 }
 
-.app-container {
-  width: 100%;
-  max-width: 1200px;
-  background-color: white;
-  border-radius: var(--radius);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  display: flex;
-  height: 95vh;
+/* Desktop - Fondo blanco */
+@media (min-width: 769px) {
+  body {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: var(--radius);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    height: 95vh;
+  }
+}
+
+/* Móvil - Fondo gradiente y pantalla completa */
+@media (max-width: 768px) {
+  body {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    padding: 0;
+  }
+
+  .app-container {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 /* Panel de navegación */
@@ -52,7 +76,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: var(--transition);
-  z-index: 100;
+  z-index: 1000;
 }
 
 .nav-header {
@@ -108,6 +132,7 @@ body {
   font-size: 24px;
   cursor: pointer;
   padding: 10px;
+  z-index: 1001;
 }
 
 /* Contenido principal */
@@ -543,85 +568,71 @@ textarea {
   color: white;
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
-  .app-container {
-    height: 92vh;
-  }
-
-  .nav-panel {
-    width: 220px;
-  }
-
-  .view-title {
-    font-size: 24px;
-  }
-
-  .user-type,
-  .payment-methods {
-    gap: 15px;
-  }
-
-  .user-option,
-  .payment-method {
-    padding: 20px 10px;
-  }
-
-  .user-option i,
-  .payment-method i {
-    font-size: 32px;
-  }
-}
-
+/* Responsive Design - Móvil */
 @media (max-width: 768px) {
-  .app-container {
-    flex-direction: column;
-    height: auto;
-    max-height: 95vh;
+  .mobile-menu-btn {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
   }
 
   .nav-panel {
-    width: 100%;
-    padding: 15px;
-    max-height: 70px;
-    overflow: hidden;
-    transition: max-height 0.5s ease;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 85vw;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--secondary), #34495e);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    border-radius: 0;
+    padding: 70px 25px 25px 25px;
   }
 
   .nav-panel.active {
-    max-height: 400px;
+    left: 0;
   }
 
   .nav-header {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    right: 25px;
     margin-bottom: 0;
   }
 
-  .mobile-menu-btn {
-    display: block;
-  }
-
   .nav-items {
-    margin-top: 20px;
-    display: none;
-  }
-
-  .nav-panel.active .nav-items {
+    margin-top: 0;
     display: block;
   }
 
   .nav-item {
-    margin-bottom: 5px;
-    padding: 12px 15px;
+    margin-bottom: 10px;
+    padding: 18px 15px;
+    font-size: 16px;
   }
 
   .content-area {
     padding: 20px;
+    width: 100%;
+    height: 100%;
     overflow-y: auto;
   }
 
   .view-header {
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 20px;
   }
 
   .user-type,
@@ -652,23 +663,81 @@ textarea {
     margin-right: 0;
     margin-bottom: 15px;
   }
+
+  .card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .view-title {
+    font-size: 24px;
+  }
+
+  .user-option,
+  .payment-method {
+    padding: 20px 15px;
+  }
+
+  .user-option i,
+  .payment-method i {
+    font-size: 35px;
+  }
+
+  /* Overlay para cuando el menú está abierto */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .nav-overlay.active {
+    display: block;
+  }
 }
 
-@media (max-width: 576px) {
-  body {
-    padding: 10px;
-  }
-
+/* Tablets */
+@media (max-width: 992px) and (min-width: 769px) {
   .app-container {
-    border-radius: 10px;
+    height: 92vh;
   }
 
+  .nav-panel {
+    width: 220px;
+  }
+
+  .view-title {
+    font-size: 24px;
+  }
+
+  .user-type,
+  .payment-methods {
+    gap: 15px;
+  }
+
+  .user-option,
+  .payment-method {
+    padding: 20px 10px;
+  }
+
+  .user-option i,
+  .payment-method i {
+    font-size: 32px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 576px) {
   .content-area {
     padding: 15px;
   }
 
   .card {
-    padding: 20px;
+    padding: 18px;
   }
 
   .view-title {
@@ -692,6 +761,10 @@ textarea {
   .expert-pricing {
     flex-direction: column;
   }
+
+  .nav-panel {
+    width: 90vw;
+  }
 }
 
 @media (max-width: 400px) {
@@ -712,5 +785,10 @@ textarea {
   select,
   textarea {
     padding: 12px;
+  }
+
+  .nav-panel {
+    width: 95vw;
+    padding: 60px 20px 20px 20px;
   }
 }

@@ -20,7 +20,7 @@ function showView(viewId) {
 
   // En móviles, cerrar el menú después de seleccionar una vista
   if (window.innerWidth <= 768) {
-    document.getElementById("navPanel").classList.remove("active");
+    closeMobileMenu();
   }
 }
 
@@ -55,8 +55,28 @@ function selectPriceOption(option) {
   option.classList.add("selected");
 }
 
+// Funciones para el menú móvil
+function openMobileMenu() {
+  document.getElementById("navPanel").classList.add("active");
+  document.getElementById("navOverlay").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeMobileMenu() {
+  document.getElementById("navPanel").classList.remove("active");
+  document.getElementById("navOverlay").classList.remove("active");
+  document.body.style.overflow = "auto";
+}
+
 // Configurar eventos
 document.addEventListener("DOMContentLoaded", function () {
+  // Crear overlay para el menú móvil
+  const overlay = document.createElement("div");
+  overlay.id = "navOverlay";
+  overlay.className = "nav-overlay";
+  overlay.addEventListener("click", closeMobileMenu);
+  document.body.appendChild(overlay);
+
   // Navegación
   const navItems = document.querySelectorAll(".nav-item");
   navItems.forEach((item) => {
@@ -70,8 +90,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const mobileMenuBtn = document.getElementById("mobileMenuBtn");
   const navPanel = document.getElementById("navPanel");
 
-  mobileMenuBtn.addEventListener("click", function () {
-    navPanel.classList.toggle("active");
+  mobileMenuBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (navPanel.classList.contains("active")) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
   });
 
   // Métodos de pago
@@ -101,25 +126,11 @@ document.addEventListener("DOMContentLoaded", function () {
     userTypeSelect.addEventListener("change", toggleCamposExperto);
   }
 
-  // Cerrar menú al hacer clic fuera de él (solo en móviles)
-  document.addEventListener("click", function (event) {
-    if (
-      window.innerWidth <= 768 &&
-      !navPanel.contains(event.target) &&
-      !mobileMenuBtn.contains(event.target)
-    ) {
-      navPanel.classList.remove("active");
+  // Cerrar menú con tecla Escape
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeMobileMenu();
     }
-  });
-
-  // Validación de formularios
-  const forms = document.querySelectorAll("form");
-  forms.forEach((form) => {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      // Aquí iría la validación real
-      alert("Formulario enviado correctamente");
-    });
   });
 });
 
