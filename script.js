@@ -46,13 +46,51 @@ function toggleCamposExperto() {
   }
 }
 
-// Función para seleccionar opción de precio
-function selectPriceOption(option) {
-  const options = option.parentElement.querySelectorAll(".price-option");
-  options.forEach((opt) => {
-    opt.classList.remove("selected");
-  });
-  option.classList.add("selected");
+// Función para mostrar/ocultar los temas de expertise
+function toggleTemasExpertise() {
+  const grid = document.getElementById("gridTemasExpertise");
+  const btn = document.getElementById("btnTemasExpertise");
+
+  if (grid.classList.contains("show")) {
+    grid.classList.remove("show");
+    btn.innerHTML =
+      '<i class="fas fa-plus"></i> Seleccionar Temas de Expertise';
+    // Ocultar después de la animación
+    setTimeout(() => {
+      grid.style.display = "none";
+    }, 300);
+  } else {
+    grid.style.display = "block";
+    setTimeout(() => {
+      grid.classList.add("show");
+    }, 10);
+    btn.innerHTML = '<i class="fas fa-minus"></i> Ocultar Temas';
+  }
+
+  // Actualizar la lista de temas seleccionados
+  actualizarTemasSeleccionados();
+}
+
+// Función para actualizar la lista de temas seleccionados
+function actualizarTemasSeleccionados() {
+  const checkboxes = document.querySelectorAll(
+    'input[name="temasExpertise"]:checked'
+  );
+  const temasContainer = document.getElementById("temasSeleccionados");
+  const listaTemas = document.getElementById("listaTemas");
+
+  if (checkboxes.length > 0) {
+    const temas = Array.from(checkboxes).map((cb) => {
+      const label = document.querySelector(`label[for="${cb.id}"]`);
+      return label ? label.textContent : cb.value;
+    });
+
+    listaTemas.textContent = temas.join(", ");
+    temasContainer.style.display = "block";
+  } else {
+    listaTemas.textContent = "Ninguno";
+    temasContainer.style.display = "none";
+  }
 }
 
 // Funciones para el menú móvil
@@ -66,6 +104,113 @@ function closeMobileMenu() {
   document.getElementById("navPanel").classList.remove("active");
   document.getElementById("navOverlay").classList.remove("active");
   document.body.style.overflow = "auto";
+}
+
+// Sistema de calificación con estrellas
+function initializeRatingSystem() {
+  const stars = document.querySelectorAll(".star");
+  stars.forEach((star) => {
+    star.addEventListener("click", function () {
+      const rating = parseInt(this.getAttribute("data-rating"));
+      setStarRating(rating);
+    });
+
+    star.addEventListener("mouseover", function () {
+      const rating = parseInt(this.getAttribute("data-rating"));
+      highlightStars(rating);
+    });
+  });
+
+  // Restablecer estrellas al quitar el mouse
+  document
+    .querySelector(".rating-stars")
+    .addEventListener("mouseleave", function () {
+      const currentRating = getCurrentRating();
+      if (currentRating > 0) {
+        highlightStars(currentRating);
+      } else {
+        resetStars();
+      }
+    });
+}
+
+function setStarRating(rating) {
+  const stars = document.querySelectorAll(".star");
+  stars.forEach((star) => {
+    const starRating = parseInt(star.getAttribute("data-rating"));
+    if (starRating <= rating) {
+      star.classList.add("active");
+    } else {
+      star.classList.remove("active");
+    }
+  });
+  // Guardar la calificación seleccionada
+  document
+    .getElementById("ratingGeneral")
+    .setAttribute("data-selected", rating);
+}
+
+function highlightStars(rating) {
+  const stars = document.querySelectorAll(".star");
+  stars.forEach((star) => {
+    const starRating = parseInt(star.getAttribute("data-rating"));
+    if (starRating <= rating) {
+      star.style.color = "#ffc107";
+    } else {
+      star.style.color = "#ddd";
+    }
+  });
+}
+
+function resetStars() {
+  const stars = document.querySelectorAll(".star");
+  const currentRating = getCurrentRating();
+  stars.forEach((star) => {
+    const starRating = parseInt(star.getAttribute("data-rating"));
+    if (currentRating === 0 || starRating > currentRating) {
+      star.style.color = "#ddd";
+    }
+  });
+}
+
+function getCurrentRating() {
+  const selected = document
+    .getElementById("ratingGeneral")
+    .getAttribute("data-selected");
+  return selected ? parseInt(selected) : 0;
+}
+
+// Función para enviar calificación
+function enviarCalificacion() {
+  const rating = getCurrentRating();
+  const satisfaccion = document.querySelector(
+    'input[name="satisfaccion"]:checked'
+  );
+  const comentario = document.getElementById("comentario").value;
+  const recomendaria = document.getElementById("recomendaria").checked;
+
+  if (rating === 0) {
+    alert("Por favor selecciona una calificación con estrellas");
+    return;
+  }
+
+  if (!satisfaccion) {
+    alert("Por favor califica tu nivel de satisfacción");
+    return;
+  }
+
+  // Simular envío de calificación
+  console.log("Calificación enviada:", {
+    rating,
+    satisfaccion: satisfaccion.value,
+    comentario,
+    recomendaria,
+  });
+
+  alert(
+    "¡Gracias por tu calificación! Tu opinión ayuda a mejorar nuestro servicio."
+  );
+  showView("vista1");
 }
 
 // Configurar eventos
@@ -126,91 +271,21 @@ document.addEventListener("DOMContentLoaded", function () {
     userTypeSelect.addEventListener("change", toggleCamposExperto);
   }
 
-  // Cerrar menú con tecla Escape
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      closeMobileMenu();
-    }
-  });
-});
-
-// Función para validar LinkedIn (simulada)
-function validarLinkedIn(url) {
-  // En una implementación real, aquí se haría una validación real del perfil
-  return url.includes("linkedin.com/in/");
-}
-
-// Función para calcular costo basado en duración
-function calcularCosto(duracion) {
-  const precios = {
-    30: 50000,
-    60: 90000,
-    90: 120000,
-  };
-  return precios[duracion] || 0;
-}
-
-// Función para programar recordatorio
-function programarRecordatorio(fechaHora) {
-  // En una implementación real, aquí se conectaría con un servicio de notificaciones
-  console.log(`Recordatorio programado para 15 minutos antes de ${fechaHora}`);
-}
-
-// Función para mostrar/ocultar los temas de expertise
-function toggleTemasExpertise() {
-  const grid = document.getElementById("gridTemasExpertise");
-  const btn = document.getElementById("btnTemasExpertise");
-  const temasContainer = document.getElementById("temasSeleccionados");
-
-  if (grid.classList.contains("show")) {
-    grid.classList.remove("show");
-    btn.innerHTML =
-      '<i class="fas fa-plus"></i> Seleccionar Temas de Expertise';
-    // Ocultar después de la animación
-    setTimeout(() => {
-      grid.style.display = "none";
-    }, 300);
-  } else {
-    grid.style.display = "block";
-    setTimeout(() => {
-      grid.classList.add("show");
-    }, 10);
-    btn.innerHTML = '<i class="fas fa-minus"></i> Ocultar Temas';
-  }
-
-  // Actualizar la lista de temas seleccionados
-  actualizarTemasSeleccionados();
-}
-
-// Función para actualizar la lista de temas seleccionados
-function actualizarTemasSeleccionados() {
-  const checkboxes = document.querySelectorAll(
-    'input[name="temasExpertise"]:checked'
-  );
-  const temasContainer = document.getElementById("temasSeleccionados");
-  const listaTemas = document.getElementById("listaTemas");
-
-  if (checkboxes.length > 0) {
-    const temas = Array.from(checkboxes).map((cb) => {
-      const label = document.querySelector(`label[for="${cb.id}"]`);
-      return label ? label.textContent : cb.value;
-    });
-
-    listaTemas.textContent = temas.join(", ");
-    temasContainer.style.display = "block";
-  } else {
-    listaTemas.textContent = "Ninguno";
-    temasContainer.style.display = "none";
-  }
-}
-
-// En el DOMContentLoaded, agregar event listeners a los checkboxes
-document.addEventListener("DOMContentLoaded", function () {
   // Event listeners para los checkboxes de temas
   const checkboxesTemas = document.querySelectorAll(
     'input[name="temasExpertise"]'
   );
   checkboxesTemas.forEach((checkbox) => {
     checkbox.addEventListener("change", actualizarTemasSeleccionados);
+  });
+
+  // Inicializar sistema de calificación
+  initializeRatingSystem();
+
+  // Cerrar menú con tecla Escape
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeMobileMenu();
+    }
   });
 });

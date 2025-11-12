@@ -36,10 +36,13 @@
                     <i class="fas fa-credit-card"></i> Pago
                 </div>
                 <div class="nav-item" data-view="vista6">
-                    <i class="fas fa-reply"></i> Respuestas
+                    <i class="fas fa-reply"></i> Sesión Programada
                 </div>
                 <div class="nav-item" data-view="vista7">
                     <i class="fas fa-clipboard-list"></i> Perfil Experto
+                </div>
+                <div class="nav-item" data-view="vista8">
+                    <i class="fas fa-star"></i> Calificar Servicio
                 </div>
             </div>
         </div>
@@ -83,8 +86,7 @@
 
                     <div class="terms">
                         <p><strong>Términos y condiciones:</strong> Al utilizar esta plataforma, aceptas nuestros
-                            términos de servicio y política de privacidad. Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit.</p>
+                            términos de servicio y política de privacidad.</p>
                         <p><strong>Política de tratamiento de datos:</strong> Tus datos están protegidos según la ley de
                             protección de datos personales.</p>
                     </div>
@@ -111,7 +113,7 @@
 
                     <div class="form-group">
                         <label for="userType">¿Qué tipo de usuario es?</label>
-                        <select id="userType">
+                        <select id="userType" onchange="toggleCamposExperto()">
                             <option value="asesorado">Asesorado</option>
                             <option value="experto">Experto</option>
                         </select>
@@ -250,6 +252,7 @@
                                         id="listaTemas">Ninguno</span></small>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="aniosExperiencia">Años de experiencia</label>
                             <input type="number" id="aniosExperiencia" placeholder="Años de experiencia">
@@ -474,7 +477,7 @@
                 </div>
             </div>
 
-            <!-- Vista 6: Respuestas -->
+            <!-- Vista 6: Sesión Programada -->
             <div id="vista6" class="view">
                 <div class="view-header">
                     <h1 class="view-title">Sesión Programada</h1>
@@ -522,6 +525,9 @@
                         <button class="btn">
                             <i class="fas fa-comments"></i> Chat con Experto
                         </button>
+                        <button class="btn btn-warning" onclick="showView('vista8')">
+                            <i class="fas fa-star"></i> Calificar Servicio
+                        </button>
                         <button class="btn btn-secondary" onclick="showView('vista1')">
                             <i class="fas fa-home"></i> Volver al Inicio
                         </button>
@@ -553,6 +559,28 @@
                             </div>
                             <p><i class="fab fa-linkedin"></i> linkedin.com/in/mariagonzalez</p>
                             <p><strong>Sector:</strong> Servicios • <strong>Tema:</strong> Estrategia, Marketing</p>
+
+                            <div class="expert-stats">
+                                <div class="stat-item">
+                                    <strong>4.7</strong>
+                                    <div class="expert-rating small">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <small>Calificación promedio</small>
+                                </div>
+                                <div class="stat-item">
+                                    <strong>128</strong>
+                                    <small>Sesiones completadas</small>
+                                </div>
+                                <div class="stat-item">
+                                    <strong>95%</strong>
+                                    <small>Satisfacción</small>
+                                </div>
+                            </div>
 
                             <div class="expert-pricing">
                                 <div class="price-option">
@@ -618,10 +646,99 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Vista 8: Calificación del Servicio -->
+            <div id="vista8" class="view">
+                <div class="view-header">
+                    <h1 class="view-title">Calificar Servicio</h1>
+                </div>
+
+                <div class="card">
+                    <p class="view-subtitle">Califica tu experiencia con el experto para ayudar a mejorar nuestro
+                        servicio.</p>
+
+                    <div class="expert-info">
+                        <div class="expert-avatar">MG</div>
+                        <div class="expert-details">
+                            <h4>María González</h4>
+                            <p><strong>Sesión:</strong> Estrategia de Marketing Digital</p>
+                            <p><strong>Fecha:</strong> 25 de Mayo, 2023 - 10:00 AM</p>
+                            <p><strong>Duración:</strong> 60 minutos</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Calificación general del servicio</label>
+                        <div class="rating-stars" id="ratingGeneral">
+                            <span class="star" data-rating="1">★</span>
+                            <span class="star" data-rating="2">★</span>
+                            <span class="star" data-rating="3">★</span>
+                            <span class="star" data-rating="4">★</span>
+                            <span class="star" data-rating="5">★</span>
+                        </div>
+                        <div class="rating-labels">
+                            <span>Muy malo</span>
+                            <span>Excelente</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Qué tan satisfecho estás con la asesoría recibida?</label>
+                        <div class="rating-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="satisfaccion_1" name="satisfaccion" value="1">
+                                <label for="satisfaccion_1">1</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="satisfaccion_2" name="satisfaccion" value="2">
+                                <label for="satisfaccion_2">2</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="satisfaccion_3" name="satisfaccion" value="3">
+                                <label for="satisfaccion_3">3</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="satisfaccion_4" name="satisfaccion" value="4">
+                                <label for="satisfaccion_4">4</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="satisfaccion_5" name="satisfaccion" value="5">
+                                <label for="satisfaccion_5">5</label>
+                            </div>
+                        </div>
+                        <div class="scale-labels">
+                            <span>Muy insatisfecho</span>
+                            <span>Muy satisfecho</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comentario">Comentarios adicionales (opcional)</label>
+                        <textarea id="comentario"
+                            placeholder="¿Qué te gustó más de la asesoría? ¿Alguna sugerencia de mejora?"></textarea>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="recomendaria" name="recomendaria">
+                        <label for="recomendaria">Recomendaría este experto a otros usuarios</label>
+                    </div>
+
+                    <div class="navigation">
+                        <button class="btn btn-success" onclick="enviarCalificacion()">
+                            <i class="fas fa-star"></i> Enviar Calificación
+                        </button>
+                        <button class="btn btn-secondary" onclick="showView('vista1')">
+                            <i class="fas fa-times"></i> Calificar después
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
     <!-- Overlay para menú móvil -->
     <div class="nav-overlay" id="navOverlay"></div>
+
     <script src="script.js"></script>
 </body>
 
